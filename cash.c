@@ -11,11 +11,11 @@ int main(void)
         dollars = get_float("How much change is due?\n");
    }
    while (dollars <= 0);
-    
+
     //round up
    int cents = round(dollars * 100);
    int coins = 0;
-    
+
     //find number of coins needed
    while (cents >= 25)
    {
