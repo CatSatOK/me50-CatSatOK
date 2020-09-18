@@ -21,18 +21,18 @@ int main(void)
             letters++;
         }
     }
-     //count words
+    //count words
     for (int i = 1, len = strlen(text); i < len; i++)
     {
-        if ((isgraph(text[i])) && (isspace(text[i+1])))
-            {
-                words++;
-            }
+        if ((isgraph(text[i])) && (isspace(text[i + 1])))
+        {
+            words++;
+        }
     }
-     //count sentances
+    //count sentances
     for (int i = 0, len = strlen(text); i < len; i++)
     {
-        if (text[i]=='.' || text[i]=='!' || text[i]=='?')
+        if (text[i] == '.' || text[i] == '!' || text[i] == '?')
         {
             sentances++;
         }
@@ -48,9 +48,15 @@ int main(void)
 
     //print grade results
     if (index < 1)
+    {
         printf("Before Grade 1\n");
+    }
     else if (index >= 16)
+    {
         printf("Grade 16+\n");
+    }
     else
+    {
         printf("Grade %i\n", index);
+    }
 }
