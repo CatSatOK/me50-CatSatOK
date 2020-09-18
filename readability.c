@@ -53,7 +53,4 @@ int main(void)
         printf("Grade 16+\n");
     else
         printf("Grade %i\n", index);
-        printf("Letters %i\n", letters);
-        printf("Words %i\n", words);
-        printf("Sentances %i\n", sentances);
 }
