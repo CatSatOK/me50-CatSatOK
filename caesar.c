@@ -30,12 +30,16 @@ int main(int argc, string argv[])
         {
             char e = 'A';
             if (islower(c))
+            {
                 e = 'a';
+            }
             //changing ascii to alphabetical, calculate and change back
             printf("%c", (c - e + key) % 26 + e);
         }
         else
+        {
             printf("%c", c);
+        }
     }
     //print new line
     printf("\n");
@@ -45,6 +49,8 @@ bool check_key(string s)
 {
     for (int i = 0, len = strlen(s); i < len; i++)
         if (!isdigit(s[i]))
+        {
             return false;
+        }
     return true;
 }
