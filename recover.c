@@ -58,10 +58,6 @@ int main(int argc, char *argv[])
     {
         if(isJpgHeader(buffer))
         {
-            if(outputPtr == NULL)
-            {
-                fclose(outputPtr);
-            }
             sprintf(filename, " %03i.jpg", jpgCounter);
             outputPtr = fopen(filename, "w");
             jpgCounter++;
