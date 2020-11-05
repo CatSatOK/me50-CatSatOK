@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     }
 
     FILE *file = fopen(argv[1], "r");
-    if(file == NULL)
+    if (file == NULL)
     {
         printf("File opening error\n");
         return 1;
@@ -64,11 +64,11 @@ int main(int argc, char *argv[])
         }
         else
         {
-           //else if already found jpeg keep writing to it
-           if (found_jpeg)
-           {
-              fwrite(buffer, sizeof(BYTE), bytes_read, current_file);
-           }
+            //else if already found jpeg keep writing to it
+            if (found_jpeg)
+            {
+                fwrite(buffer, sizeof(BYTE), bytes_read, current_file);
+            }
         }
     }
     fclose(file);
