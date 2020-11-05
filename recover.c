@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdint.h>
-
-#define BLOCKSIZE 512
+#define BLOCK_SIZE 512
 
 //main
 int main(int argc, char *argv[])
@@ -22,7 +21,7 @@ int main(int argc, char *argv[])
     }
 
     typedef uint8_t BYTE;
-    BYTE buffer[BLOCKSIZE];
+    BYTE buffer[BLOCK_SIZE];
 
     //have valid file so start checking blocks
     size_t bytes_read;
@@ -36,16 +35,16 @@ int main(int argc, char *argv[])
     //open memory card
     while (true)
     {
-         //repeat until end of card
+        //repeat until end of card
         //read 512 bytes in
-        bytes_read = fread(buffer, sizeof(BYTE), BLOCKSIZE, file);
+        bytes_read = fread(buffer, sizeof(BYTE), BLOCK_SIZE, file);
         if (bytes_read == 0)
         {
             break; //end of file
         }
 
         //if start of new jpeg
-        if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0x44 && (buffer[3] & 0xf0) == 0xe0)
+        if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0)
         {
             found_jpeg = true;
             //if first jpeg mark first jpeg
