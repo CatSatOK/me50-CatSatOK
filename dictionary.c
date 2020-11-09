@@ -18,7 +18,7 @@ typedef struct node
 node;
 
 // Number of buckets in hash table
-const unsigned int N = (LENGTH+1) * 'z';
+const unsigned int N = (LENGTH + 1) * 'z';
 
 // Hash table
 int total_words = 0;
@@ -27,26 +27,26 @@ node *table[N];
 // Returns true if word is in dictionary else false
 bool check(const char *word)
 {
-  int index = hash(word);
+    int index = hash(word);
 
-  node *cursor = table[index];
-  while(cursor != NULL)
-  {
-      if(strcasecmp(cursor->word, word) == 0)
-      {
-          return true;
-      }
-      cursor = cursor->next;
-  }
+    node *cursor = table[index];
+    while (cursor != NULL)
+    {
+        if (strcasecmp(cursor->word, word) == 0)
+        {
+            return true;
+        }
+        cursor = cursor->next;
+    }
 
-  return false;
+    return false;
 }
 
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
     int sum = 0;
-    for(int i = 0; i < strlen(word); i++)
+    for (int i = 0; i < strlen(word); i++)
     {
         sum += tolower(word[i]);
     }
@@ -58,18 +58,18 @@ bool load(const char *dictionary)
 {
     //open dictionary and check
     FILE *file = fopen(dictionary, "r");
-    if(file == NULL)
+    if (file == NULL)
     {
         return false;
     }
 
     //read file
     char word[LENGTH + 1];
-    while(fscanf(file, "%s", word) != EOF)
+    while (fscanf(file, "%s", word) != EOF)
     {
         //create new node for each word
         node *new_node = malloc(sizeof(node));
-        if(new_node == NULL)
+        if (new_node == NULL)
         {
             return false;
         }
@@ -80,7 +80,7 @@ bool load(const char *dictionary)
 
         //get hashing index
         int index = hash(word);
-        if(table[index] == NULL)
+        if (table[index] == NULL)
         {
             table[index] = new_node;
         }
@@ -105,13 +105,13 @@ unsigned int size(void)
 bool unload(void)
 {
     //free linked list
-    for(int i = 0; i < N; i++)
+    for (int i = 0; i < N; i++)
     {
         node *head = table[i];
         node *cursor = head;
         node *tmp = head;
 
-        while(cursor != NULL)
+        while (cursor != NULL)
         {
             cursor = cursor->next;
             free(tmp);
