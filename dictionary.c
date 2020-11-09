@@ -17,106 +17,105 @@ typedef struct node
 }
 node;
 
-int wordCount=0;
 // Number of buckets in hash table
-const unsigned int N = 26;
+const unsigned int N = (LENGTH+1) * 'z';
 
 // Hash table
+int total_words = 0;
 node *table[N];
 
 // Returns true if word is in dictionary else false
 bool check(const char *word)
 {
-   int key = hash(word);
+  int index = hash(word);
 
-   node* nodePtr = table[key];
+  node *cursor = table[index];
+  while(cursor != NULL)
+  {
+      if(strcasecmp(cursor->word, word) == 0)
+      {
+          return true;
+      }
+      cursor = cursor->next;
+  }
 
-   while(nodePtr != NULL)
-   {
-       if(strcasecmp(nodePtr->word, word) == 0)
-       {
-           return true;
-       }
-       nodePtr = nodePtr->next;
-   }
-
-    return false;
+  return false;
 }
 
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
-    int value = 0;
-
-    for(int i= 0; word[i]!='\n'; i++)
+    int sum = 0;
+    for(int i = 0; i < strlen(word); i++)
     {
-        value += tolower(word[i]);
+        sum += tolower(word[i]);
     }
-    return value % N;
+    return (sum % N);
 }
 
 // Loads dictionary into memory, returning true if successful else false
 bool load(const char *dictionary)
 {
-    FILE* filePtr = fopen(dictionary, "r");
-    if(filePtr == NULL)
+    //open dictionary and check
+    FILE *file = fopen(dictionary, "r");
+    if(file == NULL)
     {
         return false;
     }
 
-    for(int i=0; i<N; i++)
+    //read file
+    char word[LENGTH + 1];
+    while(fscanf(file, "%s", word) != EOF)
     {
-        table[i] = NULL;
-    }
-
-    char tempWord[LENGTH + 1];
-
-    while(fscanf(filePtr, "%s\n", tempWord) != EOF)
-    {
-        node* tempNode = malloc(sizeof(node));
-
-        strcpy(tempNode->word, tempWord);
-
-        int key = hash(tempWord);
-
-        if(table[key] == NULL)
+        //create new node for each word
+        node *new_node = malloc(sizeof(node));
+        if(new_node == NULL)
         {
-            tempNode->next = NULL;
-            table[key] = tempNode;
+            return false;
+        }
+
+        //store word in node
+        strcpy(new_node->word, word);
+        new_node->next = NULL;
+
+        //get hashing index
+        int index = hash(word);
+        if(table[index] == NULL)
+        {
+            table[index] = new_node;
         }
         else
         {
-            tempNode->next = table[key];
-            table[key] = tempNode;
+            new_node->next = table[index];
+            table[index] = new_node;
         }
-
-        wordCount++;
+        total_words++;
     }
-    fclose(filePtr);
     return true;
 }
 
 // Returns number of words in dictionary if loaded else 0 if not yet loaded
 unsigned int size(void)
 {
-    return wordCount;
+    return total_words;
 }
 
 // Unloads dictionary from memory, returning true if successful else false
 bool unload(void)
 {
-    for(int i=0; i<N; i++)
+    //free linked list
+    for(int i = 0; i < N; i++)
     {
-        node* nodePtr = table[i];
+        node *head = table[i];
+        node *cursor = head;
+        node *tmp = head;
 
-        while(nodePtr != NULL)
+        while(cursor != NULL)
         {
-            node* deleteMe = nodePtr;
-            nodePtr = nodePtr->next;
-            free(deleteMe);
+            cursor = cursor->next;
+            free(tmp);
+            tmp = cursor;
         }
-
-        table[i] = NULL;
     }
     return true;
 }
