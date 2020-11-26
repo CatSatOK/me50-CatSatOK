@@ -10,4 +10,8 @@ rows = db.execute('SELECT * FROM students WHERE house = ? ORDER BY last, first',
 
 for row in rows:
     #format
-    print(row['first'] + ' ' + (row['middle'] + ' ' if row['middle'] else ' ') + row['last'] + ', born' + str(row['birth']))
+    if row['middle'] is None:
+        print(row['first'] + ' ' + row['last'] + ', born' + str(row['birth']))
+    else:
+        print(row['first'] + ' ' + row['middle'] + ' ' + row['last'] + ', born' + str(row['birth']))
+
