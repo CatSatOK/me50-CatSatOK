@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Career Options</title>
+        <script>
+            function Thanks()
+            {
+                alert('Thank you for your input');
+            }
+        </script>
+    </head>
+
+    <body class="background">
+        <h1 class="title">Career Options</h1><br>
+        <h2 class="subtitle">Which Should I choose?</h2><br>
+
+        <!--text body and links-->
+        <p>I am thinking of a change of direction with my career, help me make my decision! <br><br>
+        <a href="Developer.html">Developer</a><br><br>
+        <a href="Data.html">Data</a><br><br>
+        <a href="Project manager.html">Project Manager</a><br><br>
+        <a href="Other.html">Other Options</a><br>
+        </p>
+
+        <!--Questionaire-->
+        <p>Have your say - read the relevate pages and vote below for the career path you think I should follow. You can select more than one option.<br>
+        If you select Other please write your suggestion in comments box below.</p>
+
+        <div class="checkbox">
+            <label><input type="checkbox" value="">Developer</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="">Data</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="">Project Manager</label>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" value="">Other</label>
+        </div>
+
+        <!--Comments box and thank you alert-->
+        <div class="form-group">
+            <label for="comment">Comments:</label>
+                <form onsubmit="Thanks(); return false;">
+                    <input type="text">
+                    <input type="submit">
+                </form>
+        </div>
+
+        <!--Navigation bar-->
+        <nav class="navbar fixed-bottom navbar-dark indigo">
+                <ul class="nav">
+                    <li class="active"><a class="nav-link" href="index.html">Home</a></li>
+                    <li><a class="nav-link" href="Developer.html">Developer</a></li>
+                    <li><a class="nav-link" href="Data.html">Data</a></li>
+                    <li><a class="nav-link" href="Project manager.html">Project Manager</a></li>
+                    <li><a class="nav-link" href="Other.html">Other</a></li>
+                </ul>
+        </nav>
+    </body>
+</html>

@@ -1,0 +1,35 @@
+/* title formating */
+.title
+{
+    text-align: center;
+    font: Trebuchet;
+    font-size: 50px;
+}
+
+.subtitle
+{
+    text-align: center;
+    font: Garamond;
+    font-size: 30px;
+}
+
+/* Centering table contents */
+.centered
+{
+    text-align: center;
+}
+
+.background
+{
+    background-color: beige;
+    margin: 40px;
+}
+
+/* Centering photos */
+.center
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
