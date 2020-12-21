@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Shares Purchased
+{% endblock %}
+
+{% block main %}
+    <form>
+        <p>
+            {{ shares }} shares of {{ name }} ({{ symbol }}) purchased for {{ price | usd }} per share
+        </p>
+    </form>
+{% endblock %}
